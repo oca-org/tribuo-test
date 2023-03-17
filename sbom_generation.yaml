@@ -1,0 +1,14 @@
+version: 0.1
+component: build
+timeoutInSeconds: 1000
+shell: bash
+
+steps:
+  - type: Command
+    name: "run maven cycloneDX plugin command"
+    command: |
+      mvn org.cyclonedx:cyclonedx-maven-plugin:2.7.5:makeAggregateBom
+outputArtifacts:
+  - name: sbom
+    type: BINARY
+    location: ${OCI_PRIMARY_SOURCE_DIR}/target/bom.json
